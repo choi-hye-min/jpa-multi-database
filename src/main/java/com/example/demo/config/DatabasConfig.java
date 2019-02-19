@@ -15,6 +15,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.util.HashMap;
 
+/**
+ * @EnableJpaRepositories
+ * basePackages : repository의 패키지 위치
+ */
 @Configuration
 @EnableJpaRepositories(
         basePackages = "com.example.demo.domain.repository",
@@ -31,7 +35,7 @@ public class DatabasConfig {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 
         em.setDataSource(userDataSource());
-        em.setPackagesToScan(new String[] {"com.example.demo.domain"});
+        em.setPackagesToScan(new String[] {"com.example.demo.domain"}); // @entity annotation이 붙어있는 위치
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
