@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "user")
 public class User {
