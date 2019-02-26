@@ -81,7 +81,7 @@ public class DatabasConfig {
         em.setDataSource(userDaraSource); // LazyConnectionDataSourceProxy 에서 얻은 Connection Proxy객체 획득
         em.setPackagesToScan(new String[] {"com.example.demo.domain"}); // @entity annotation이 붙어있는 위치
 
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter(); // Hibernate의 영속성 제공자와 EntityManager 확장 인터페이스를 노출
         em.setJpaVendorAdapter(vendorAdapter);
 
         HashMap<String, Object> properties = new HashMap<>();
