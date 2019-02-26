@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +28,7 @@ public class User {
     private String name;
 
     @Column
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime createAt;
 
     @Override
@@ -36,5 +39,12 @@ public class User {
                 ", name='" + name + '\'' +
                 ", createAt=" + createAt +
                 '}';
+    }
+
+    @Builder
+    public User(String email, String name, LocalDateTime createAt) {
+        this.email = email;
+        this.name = name;
+        this.createAt = createAt;
     }
 }

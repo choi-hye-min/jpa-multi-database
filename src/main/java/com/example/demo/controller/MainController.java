@@ -3,13 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.domain.User;
 import com.example.demo.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MainController {
@@ -17,15 +13,20 @@ public class MainController {
     @Autowired
     UserService userService;
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/user/{id}")
     public ResponseEntity<User> main(@PathVariable Long id){
         User user = userService.getUser(id);
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/test")
-    public String test(){
-        return "{\"a\":\"bb\"}";
+    @PostMapping("/user")
+    public ResponseEntity<User> join(
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "email") String email){
+
+        userService.join(name, email);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
